@@ -16,6 +16,8 @@ jobs:
         run: ls -la
       - name: View perf output
         run: sudo perf script -i perf.data
+             sudo perf record -e cycles -a -- sleep 10
+
   test-perf-tool-x64:
     runs-on: ubuntu-latest
     steps:
