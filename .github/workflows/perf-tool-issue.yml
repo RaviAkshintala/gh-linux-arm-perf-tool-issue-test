@@ -12,8 +12,8 @@ jobs:
       run: sudo sysctl -w kernel.perf_event_paranoid=1  # Set the correct parameter
     - name: Set Kernel KPTR Restriction
       run: sudo sysctl -w kernel.kptr_restrict=0  # Allow kernel pointer info
-    - name: Run perf command with cpu-clock event (try with cpu-clock instead of cycles)
-      run: sudo perf record -g -e cpu-clock -a -o perf.data sleep 5  # Use a different event
+    - name: Run perf command with cycles event (try with cpu-clock instead of cycles)
+      run: sudo perf record -g -e cycles -a -o perf.data sleep 5  # Use a different event
     - name: Run ls to check perf data
       run: ls -la  # Ensure that perf.data is created
     - name: View perf output
