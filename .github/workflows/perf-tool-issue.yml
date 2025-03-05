@@ -7,17 +7,17 @@ jobs:
     steps:
 
     - name: Install perf
-      run: sudo apt-get install linux-tools-$(uname -r)  # Ensure the right version is installed
+      run: sudo apt-get install linux-tools-$(uname -r) 
     - name: Enable perf event paranoid flag
-      run: sudo sysctl -w kernel.perf_event_paranoid=1  # Set the correct parameter
+      run: sudo sysctl -w kernel.perf_event_paranoid=1 
     - name: Set Kernel KPTR Restriction
-      run: sudo sysctl -w kernel.kptr_restrict=0  # Allow kernel pointer info
+      run: sudo sysctl -w kernel.kptr_restrict=0  \
     - name: Run perf command with cpu-clock event (try with cpu-clock instead of cycles)
-      run: sudo perf record -g -e cpu-clock -a -o perf.data sleep 5  # Use a different event
+      run: sudo perf record -g -e cpu-clock -a -o perf.data sleep 5 
     - name: Run ls to check perf data
       run: ls -la  # Ensure that perf.data is created
     - name: View perf output
-      run: sudo perf script -i perf.data  # Display perf data
+      run: sudo perf script -i perf.data  
 
   test-perf-tool-x64:
     runs-on: ubuntu-latest
